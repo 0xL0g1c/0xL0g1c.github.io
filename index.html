@@ -191,6 +191,17 @@
             color: var(--neon-green);
         }
 
+        ul.custom-list li a, .project-github-link {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        ul.custom-list li a:hover, .project-github-link:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+        }
+
         .audio-btn {
             position: fixed;
             bottom: 30px;
@@ -261,7 +272,7 @@
             <div class="card">
                 <p>I am a Cybersecurity undergraduate student at De Montfort University (DMU). My primary focus is on <strong>Blue Team</strong> operations, with a strong ambition to build a career in <strong>Cloud Security</strong>.</p>
                 <br>
-                <p>I have a solid foundation in cybersecurity fundamentals, networking basics, and social engineering awareness. Previously, I supervised daily operations in a retail branch, which significantly developed my leadership, time management, and problem-solving skills under pressure. Currently, I am continuously expanding my technical knowledge through hands-on training and actively seeking future opportunities in the cybersecurity field.</p>
+                <p>I have a solid foundation in cybersecurity fundamentals, networking basics, and social engineering awareness. Previously, supervising daily operations in a retail branch honed my leadership, time management, and critical problem-solving skills under pressure—valuable soft skills that I am eager to bring into my cybersecurity career. Currently, I am continuously expanding my technical knowledge through hands-on training and actively seeking future opportunities in the cybersecurity field.</p>
             </div>
         </section>
 
@@ -279,10 +290,9 @@
 
                 <h3>[ Competencies ]</h3>
                 <div class="skills-grid">
-                    <span class="skill-tag">Blue Team Operations</span>
+                    <span class="skill-tag">Cybersecurity Fundamentals</span>
                     <span class="skill-tag">OSINT</span>
                     <span class="skill-tag">Information Gathering</span>
-                    <span class="skill-tag">Security Awareness</span>
                     <span class="skill-tag">Team Leadership</span>
                 </div>
             </div>
@@ -291,7 +301,9 @@
         <section id="projects">
             <h2>projects</h2>
             <div class="card">
-                <h3>Gym Management System (Python)</h3>
+                <h3>Gym Management System (Python) 
+                    <a href="https://github.com/0xL0g1c" target="_blank" class="project-github-link" style="font-size: 0.85rem; margin-left: 10px; font-family: 'Fira Code', monospace;">[ GitHub ]</a>
+                </h3>
                 <p>Collaborated with a team of three to develop a comprehensive technical system for a gym. Designed and implemented multiple core features using Python to streamline operations and manage data efficiently.</p>
             </div>
         </section>
@@ -302,8 +314,8 @@
             <div class="card">
                 <h3>[ Hands-on Labs ]</h3>
                 <ul class="custom-list">
-                    <li>TryHackMe (Active)</li>
-                    <li>HackTheBox (Active)</li>
+                    <li><a href="https://tryhackme.com/p/0xl0gic" target="_blank">TryHackMe (Active)</a></li>
+                    <li><a href="https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648" target="_blank">HackTheBox (Active)</a></li>
                 </ul>
                 
                 <h3 style="margin-top: 20px;">[ Certifications ]</h3>
@@ -339,7 +351,6 @@
         const video = document.getElementById('bgVideo');
         const btn = document.getElementById('audioBtn');
 
-       
         audio.volume = 0.3;
 
         btn.addEventListener('click', () => {
