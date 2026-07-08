@@ -198,3 +198,176 @@
         }
 
         ul.custom-list li a:hover, .project-github-link:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+        }
+
+        .audio-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(10, 10, 12, 0.7);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 8px 15px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .audio-btn:hover {
+            background: var(--neon-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 10px rgba(0, 255, 140, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-family: 'Fira Code', monospace;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+            background: rgba(10, 10, 12, 0.6);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgAudio" loop>
+        <source src="bg-audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <video id="bgVideo" autoplay loop muted playsinline class="video-bg">
+        <source src="bg-video.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay"></div>
+
+    <button id="audioBtn" class="audio-btn">[ Play Audio ]</button>
+
+    <nav>
+        <div class="logo">0xL0gic</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certs">Certs</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <section class="hero">
+            <h1>0xL0gic</h1>
+            <p>Cybersecurity Undergraduate | Blue Team Enthusiast | Aspiring Cloud Security Engineer</p>
+        </section>
+
+        <section id="about">
+            <h2>about_me</h2>
+            <div class="card">
+                <p>I am a Cybersecurity undergraduate student. My primary focus is on <strong>Blue Team</strong> operations, with a strong ambition to build a career in <strong>Cloud Security</strong>.</p>
+                <br>
+                <p>I have a solid foundation in cybersecurity fundamentals, networking basics, and social engineering awareness. Previously, supervising daily operations in a retail branch honed my leadership, time management, and critical problem-solving skills under pressure—valuable soft skills that I am eager to bring into my cybersecurity career. Currently, I am continuously expanding my technical knowledge through hands-on training and actively seeking future opportunities in the cybersecurity field.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>core_skills</h2>
+            <div class="card">
+                <h3>[ Operating Systems & Tools ]</h3>
+                <div class="skills-grid" style="margin-bottom: 20px;">
+                    <span class="skill-tag">Kali Linux</span>
+                    <span class="skill-tag">Parrot OS</span>
+                    <span class="skill-tag">Windows</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+
+                <h3>[ Competencies ]</h3>
+                <div class="skills-grid">
+                    <span class="skill-tag">Cybersecurity Fundamentals</span>
+                    <span class="skill-tag">OSINT</span>
+                    <span class="skill-tag">Information Gathering</span>
+                    <span class="skill-tag">Team Leadership</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>projects</h2>
+            <div class="card">
+                <h3>Gym Management System (Python) 
+                    <a href="https://github.com/0xL0g1c" target="_blank" class="project-github-link" style="font-size: 0.85rem; margin-left: 10px; font-family: 'Fira Code', monospace;">[ GitHub ]</a>
+                </h3>
+                <p>Collaborated with a team of three to develop a comprehensive technical system for a gym. Designed and implemented multiple core features using Python to streamline operations and manage data efficiently.</p>
+            </div>
+        </section>
+
+        <section id="certs">
+            <h2>training_&_certs</h2>
+            
+            <div class="card">
+                <h3>[ Hands-on Labs ]</h3>
+                <ul class="custom-list">
+                    <li><a href="https://tryhackme.com/p/0xl0gic" target="_blank">TryHackMe (Active)</a></li>
+                    <li><a href="https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648" target="_blank">HackTheBox (Active)</a></li>
+                </ul>
+                
+                <h3 style="margin-top: 20px;">[ Workshops & Events ]</h3>
+                <ul class="custom-list">
+                    <li>How To Get Your First Bounty (Bug Bounty) – By BarqSec & ACS</li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">[ Professional Certifications ]</h3>
+                <ul class="custom-list">
+                    <li>CompTIA Security+ (In Progress)</li>
+                    <li>Cisco CCNA (Planned)</li>
+                    <li>Microsoft SC-200 (Planned)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>education</h2>
+            <div class="card">
+                <h3>BSc (Hons) in Cybersecurity</h3>
+                <p style="color: var(--text-muted);">2026 – 2029</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>sys.exit(0) | © 2026 0xL0gic</p>
+    </footer>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+        const video = document.getElementById('bgVideo');
+        const btn = document.getElementById('audioBtn');
+
+        audio.volume = 0.3;
+
+        btn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                video.muted = false;
+                btn.innerText = '[ Pause Audio ]';
+                btn.style.borderColor = 'var(--neon-blue)';
+                btn.style.color = 'var(--neon-blue)';
+            } else {
+                audio.pause();
+                video.muted = true; 
+                btn.innerText = '[ Play Audio ]';
+                btn.style.borderColor = 'var(--neon-green)';
+                btn.style.color = 'var(--neon-green)';
+            }
+        });
+    </script>
+</body>
+</html>
