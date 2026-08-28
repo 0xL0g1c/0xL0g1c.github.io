@@ -428,23 +428,29 @@
         const audio = document.getElementById('bgAudio');
         const video = document.getElementById('bgVideo');
         const btn = document.getElementById('audioBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const audioControls = document.querySelector('.audio-controls');
 
-        audio.volume = 0.3;
+        audio.volume = volumeSlider.value;
 
         btn.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
                 video.muted = false;
-                btn.innerText = '[ Pause Audio ]';
-                btn.style.borderColor = 'var(--neon-blue)';
+                btn.innerText = '[ Pause ]';
                 btn.style.color = 'var(--neon-blue)';
+                audioControls.style.borderColor = 'var(--neon-blue)';
             } else {
                 audio.pause();
                 video.muted = true; 
-                btn.innerText = '[ Play Audio ]';
-                btn.style.borderColor = 'var(--neon-green)';
+                btn.innerText = '[ Play ]';
                 btn.style.color = 'var(--neon-green)';
+                audioControls.style.borderColor = 'var(--neon-green)';
             }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
         });
     </script>
 </body>
