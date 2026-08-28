@@ -432,6 +432,7 @@
         const audioControls = document.querySelector('.audio-controls');
 
         audio.volume = volumeSlider.value;
+        video.volume = volumeSlider.value;
 
         btn.addEventListener('click', () => {
             if (audio.paused) {
@@ -451,6 +452,7 @@
 
         volumeSlider.addEventListener('input', (e) => {
             audio.volume = e.target.value;
+            video.volume = e.target.value;
         });
     </script>
 </body>
