@@ -3,527 +3,1647 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0xL0gic | Portfolio</title>
-<meta name="description" content="Cybersecurity undergraduate — Blue Team enthusiast, aspiring Cloud Security engineer. Hands-on labs, coursework projects, and certification progress.">
+<title>0xL0g1c // Rakan — Cybersecurity Undergraduate · Blue Team · Cloud Security</title>
+<meta name="description" content="Portfolio of Rakan (0xL0g1c) — cybersecurity undergraduate focused on Blue Team operations, working toward a career in Cloud Security. Interactive terminal, labs, projects, certification roadmap and contact.">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0a0a0c">
-<meta property="og:title" content="0xL0gic | Portfolio">
-<meta property="og:description" content="Cybersecurity undergraduate — Blue Team enthusiast, aspiring Cloud Security engineer.">
+<meta name="theme-color" content="#05070a">
+<meta property="og:title" content="0xL0g1c // Cybersecurity Undergraduate · Blue Team · Cloud Security">
+<meta property="og:description" content="Blue Team enthusiast · aspiring Cloud Security Engineer · SC-200 in progress · seeking internships">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0c'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='24' font-weight='700' fill='%2300FF8C' text-anchor='middle'%3E0xL%3C/text%3E%3C/svg%3E">
-<link href="./css2" rel="stylesheet">
+
 <style>
-    :root {
-        --neon-green: #00FF8C;
-        --neon-blue: #00D9FF;
-        --text-main: #e2e8f0;
-        --text-muted: #94a3b8;
-        --bg-dark: #0a0a0c;
-    }
+:root{
+  --bg:#05070a;
+  --bg-2:#070c0b;
+  --panel:#080d0f;
+  --panel-2:#0b1314;
+  --line:rgba(0,255,156,.14);
+  --line-2:rgba(0,255,156,.3);
+  --acc:#00ff9c;
+  --acc-dim:#2f9c6d;
+  --acc-2:#00e5ff;
+  --warn:#ffb020;
+  --danger:#ff3b5c;
+  --txt:#c3d6cb;
+  --txt-dim:#6f8a7c;
+  --txt-mute:#4a5f55;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono","JetBrains Mono","Fira Code","Roboto Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --maxw:1120px;
+  --r:4px;
+  --nav-h:58px;
+  --glow:0 0 12px rgba(0,255,156,.35);
+  --glow-sm:0 0 6px rgba(0,255,156,.28);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:calc(var(--nav-h) + 18px); background:transparent; }
+body{
+  margin:0; background:transparent; color:var(--txt);
+  font-family:var(--mono); font-size:15px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden; letter-spacing:.01em;
+}
+img,svg,canvas{ display:block; max-width:100%; }
+a{ color:var(--acc-2); text-decoration:none; }
+a:hover{ color:var(--acc); }
+button{ font-family:inherit; color:inherit; }
+h1,h2,h3,h4{ margin:0; font-weight:600; line-height:1.2; letter-spacing:-.01em; }
+p{ margin:0 0 1em; }
+ul{ margin:0; padding:0; list-style:none; }
+::selection{ background:rgba(0,255,156,.28); color:#eafff5; }
+*::-webkit-scrollbar{ width:10px; height:10px; }
+*::-webkit-scrollbar-track{ background:#05090a; }
+*::-webkit-scrollbar-thumb{ background:#163026; border:2px solid #05090a; border-radius:8px; }
+*::-webkit-scrollbar-thumb:hover{ background:var(--acc-dim); }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+.video-bg{
+  position:fixed; inset:0; width:100vw; height:100vh; min-width:100%; min-height:100%;
+  object-fit:cover; pointer-events:none; -webkit-backface-visibility:hidden; backface-visibility:hidden;
+  transform:translateZ(0); z-index:-2; background:#000;
+}
+.overlay{
+  position:fixed; inset:0; width:100vw; height:100vh;
+  background:rgba(10,10,12,.85); z-index:-1; pointer-events:none;
+}
 
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+.crt::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 45%, rgba(0,255,156,.04) 0%, rgba(0,0,0,0) 60%),
+             radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,.3) 100%);
+}
+.crt::before{
+  content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(to bottom,
+    rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px,
+    rgba(0,0,0,.2) 3px, rgba(0,0,0,.2) 4px);
+  opacity:.5; mix-blend-mode:multiply;
+}
+.crt::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 45%, rgba(0,255,156,.04) 0%, rgba(0,0,0,0) 60%),
+             radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,.3) 100%);
+}
+.flicker{ position:fixed; inset:0; z-index:8999; pointer-events:none; background:rgba(0,255,156,.02); opacity:0; animation:flick 7s steps(1) infinite; }
+@keyframes flick{ 0%,96%,100%{opacity:0;} 97%{opacity:.5;} 98%{opacity:.15;} 99%{opacity:.6;} }
 
-    body {
-        background-color: var(--bg-dark);
-        color: var(--text-main);
-        font-family: 'Inter', sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        overflow-x: hidden;
-    }
+#boot{
+  position:fixed; inset:0; z-index:9500; background:#020403;
+  display:flex; align-items:flex-start; justify-content:center; padding:8vh 24px;
+  transition:opacity .5s ease, visibility .5s;
+}
+#boot.done{ opacity:0; visibility:hidden; }
+.boot-inner{ width:100%; max-width:660px; font-size:13px; }
+.boot-line{ white-space:pre-wrap; color:var(--acc-dim); opacity:0; animation:bootIn .18s forwards; }
+.boot-line b{ color:var(--acc); font-weight:400; }
+.boot-line .ok{ color:var(--acc); }
+.boot-line .er{ color:var(--danger); }
+.boot-line .wn{ color:var(--warn); }
+@keyframes bootIn{ to{ opacity:1; } }
+#bootSkip{
+  position:absolute; right:22px; bottom:20px; background:transparent;
+  border:1px solid var(--line-2); color:var(--txt-dim); font-size:11px;
+  padding:6px 12px; border-radius:var(--r); cursor:pointer; letter-spacing:.12em;
+  text-transform:uppercase;
+}
+#bootSkip:hover{ color:var(--acc); border-color:var(--acc); box-shadow:var(--glow-sm); }
 
-    .video-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        z-index: -2;
-    }
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:8000; height:var(--nav-h);
+  background:rgba(4,7,10,.86); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{ display:flex; align-items:center; gap:20px; height:100%; }
+.brand{ display:flex; align-items:center; gap:9px; color:var(--acc); font-size:13.5px; letter-spacing:.06em; white-space:nowrap; }
+.brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--acc); box-shadow:var(--glow); animation:pulse 2.4s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.35; transform:scale(.8);} }
+.brand span.p{ color:var(--txt-mute); }
 
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(10, 10, 12, 0.85);
-        z-index: -1;
-    }
+.navlinks{ display:flex; gap:2px; margin-left:auto; align-items:center; }
+.navlinks a{
+  position:relative; padding:7px 11px; font-size:12.5px; color:var(--txt-dim);
+  border:1px solid transparent; border-radius:var(--r);
+  transition:color .18s, border-color .18s, background .18s;
+}
+.navlinks a::before{ content:"~/"; color:var(--txt-mute); }
+.navlinks a:hover{ color:var(--acc); background:rgba(0,255,156,.06); border-color:var(--line); }
+.navlinks a.active{ color:var(--acc); border-color:var(--line-2); background:rgba(0,255,156,.07); text-shadow:var(--glow-sm); }
 
-    .audio-btn {
-        background: rgba(10, 10, 12, 0.7);
-        color: var(--neon-green);
-        border: 1px solid var(--neon-green);
-        padding: 8px 15px;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.9rem;
-        cursor: pointer;
-        backdrop-filter: blur(5px);
-        transition: all 0.3s ease;
-    }
+.navstatus{
+  display:flex; align-items:center; gap:8px; font-size:11px; color:var(--txt-mute);
+  letter-spacing:.08em; padding-left:16px; border-left:1px solid var(--line); white-space:nowrap;
+}
+.navstatus .live{ color:var(--acc); }
 
-    .audio-btn:hover {
-        background: var(--neon-green);
-        color: var(--bg-dark);
-        box-shadow: 0 0 10px rgba(0, 255, 140, 0.5);
-    }
+#burger{
+  display:none; margin-left:auto; background:transparent; border:1px solid var(--line-2);
+  border-radius:var(--r); width:40px; height:34px; cursor:pointer; position:relative;
+}
+#burger i{ position:absolute; left:10px; right:10px; height:1.5px; background:var(--acc); transition:.25s; }
+#burger i:nth-child(1){ top:11px; } #burger i:nth-child(2){ top:16px; } #burger i:nth-child(3){ top:21px; }
+#burger.open i:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+#burger.open i:nth-child(2){ opacity:0; }
+#burger.open i:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
 
-    .audio-controls {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        z-index: 1000;
-    }
+#mobileMenu{
+  position:fixed; top:var(--nav-h); left:0; right:0; z-index:7999;
+  background:rgba(5,9,10,.98); border-bottom:1px solid var(--line-2);
+  padding:10px 24px 18px; transform:translateY(-120%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+#mobileMenu.open{ transform:translateY(0); }
+#mobileMenu a{ display:block; padding:11px 4px; font-size:14px; color:var(--txt-dim); border-bottom:1px solid rgba(0,255,156,.07); }
+#mobileMenu a::before{ content:"$ cd "; color:var(--txt-mute); }
+#mobileMenu a:hover{ color:var(--acc); }
 
-    .vol-btn {
-        background: rgba(10, 10, 12, 0.7);
-        color: var(--neon-green);
-        border: 1px solid var(--neon-green);
-        width: 32px;
-        height: 32px;
-        font-family: 'Fira Code', monospace;
-        font-size: 1rem;
-        line-height: 1;
-        cursor: pointer;
-        backdrop-filter: blur(5px);
-        transition: all 0.3s ease;
-    }
+header.hero{
+  position:relative; min-height:100vh; min-height:100svh;
+  display:flex; align-items:center;
+  padding:calc(var(--nav-h) + 40px) 0 70px;
+  overflow:hidden; border-bottom:1px solid var(--line);
+}
+#matrix{ position:absolute; inset:0; width:100%; height:100%; opacity:0; }
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(0,255,156,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,156,.05) 1px, transparent 1px);
+  background-size:44px 44px;
+  pointer-events:none;
+}
+.hero .wrap{ position:relative; z-index:2; }
 
-    .vol-btn:hover {
-        background: var(--neon-green);
-        color: var(--bg-dark);
-        box-shadow: 0 0 10px rgba(0, 255, 140, 0.5);
-    }
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:11.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--acc-dim); border:1px solid var(--line);
+  padding:6px 13px; border-radius:100px; background:rgba(0,255,156,.04); margin-bottom:26px;
+}
+.kicker b{ color:var(--acc); font-weight:400; }
 
-    .vol-label {
-        font-family: 'Fira Code', monospace;
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        min-width: 34px;
-        text-align: center;
-    }
+h1.glitch{
+  position:relative; font-size:clamp(2.6rem,9vw,5.8rem);
+  line-height:.98; letter-spacing:-.035em; text-transform:none;
+  margin-bottom:14px; font-weight:700;
+  background:linear-gradient(90deg, var(--acc), var(--acc-2));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--acc);
+}
+h1.glitch::before, h1.glitch::after{ content:attr(data-text); position:absolute; inset:0; pointer-events:none; opacity:.85; }
+h1.glitch::before{ color:var(--acc); animation:gl1 4.2s infinite steps(2); clip-path:inset(0 0 62% 0); }
+h1.glitch::after{ color:var(--acc-2); animation:gl2 3.7s infinite steps(2); clip-path:inset(58% 0 0 0); }
+@keyframes gl1{ 0%,92%,100%{ transform:translate(0); opacity:0; } 93%{ transform:translate(-3px,1px); opacity:.75; } 95%{ transform:translate(2px,-1px); opacity:.5; } 97%{ transform:translate(-1px,0); opacity:.7; } }
+@keyframes gl2{ 0%,88%,100%{ transform:translate(0); opacity:0; } 89%{ transform:translate(3px,-1px); opacity:.6; } 91%{ transform:translate(-2px,2px); opacity:.45; } 94%{ transform:translate(1px,0); opacity:.55; } }
+.handle{
+  display:inline-flex; align-items:center; gap:9px; margin:0 0 20px;
+  font-size:clamp(.85rem,2.2vw,1.05rem); color:var(--acc-2);
+  border:1px dashed rgba(0,229,255,.35); padding:6px 15px; border-radius:100px; background:rgba(0,229,255,.05);
+}
+.handle b{ color:var(--txt-mute); font-weight:400; font-size:.85em; letter-spacing:.14em; text-transform:uppercase; }
 
-    @media (max-width: 480px) {
-        .audio-controls { bottom: 16px; right: 16px; }
-        .vol-label { display: none; }
-        .pill-row { flex-direction: column; }
-        .pill { text-align: center; }
-    }
+.prompt{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px;
+  font-size:clamp(.95rem,2.4vw,1.32rem); color:var(--txt); margin-bottom:28px; min-height:2em;
+}
+.prompt .u{ color:var(--acc); } .prompt .at{ color:var(--txt-mute); }
+.prompt .h{ color:var(--acc-2); } .prompt .d{ color:var(--warn); }
+#typed{ color:#dff5e8; }
+.caret{ display:inline-block; width:9px; height:1.15em; vertical-align:-.2em; background:var(--acc); box-shadow:var(--glow); animation:blink 1.05s steps(1) infinite; }
+@keyframes blink{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
 
-    a { color: inherit; }
-    ::selection { background: rgba(0, 255, 140, .25); color: var(--text-main); }
-    :focus-visible { outline: 2px solid var(--neon-green); outline-offset: 3px; }
+.hero-lead{ max-width:640px; color:var(--txt-dim); font-size:14.5px; margin-bottom:32px; }
+.hero-lead strong{ color:var(--txt); font-weight:400; }
+.hero-lead .hl{ color:var(--acc); }
 
-   
-    .skip {
-        position: absolute; left: -999px; top: 0; z-index: 200;
-        background: #14141a; color: var(--neon-green);
-        padding: 10px 16px; font-family: 'Fira Code', monospace; font-size: 13px;
-    }
-    .skip:focus { left: 8px; top: 8px; }
+.status-line{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:.83rem; color:var(--txt-mute); margin-bottom:26px;
+}
+.status-dot{
+  width:8px; height:8px; border-radius:50%; background:var(--acc); flex:none;
+  box-shadow:0 0 0 0 rgba(0,255,140,.5); animation:pulseRing 2.2s ease-out infinite;
+}
+@keyframes pulseRing{ 70%{ box-shadow:0 0 0 8px rgba(0,255,140,0);} 100%{ box-shadow:0 0 0 0 rgba(0,255,140,0);} }
 
-    nav {
-        padding: 18px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(0, 255, 140, 0.1);
-        background: rgba(10, 10, 12, 0.75);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+.btnrow{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:50px; }
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:12px 22px; font-size:12.5px; letter-spacing:.13em; text-transform:uppercase;
+  border:1px solid var(--line-2); border-radius:var(--r);
+  background:rgba(0,255,156,.05); color:var(--acc); cursor:pointer; transition:.2s;
+}
+.btn:hover{ background:var(--acc); color:#02120b; box-shadow:0 0 26px rgba(0,255,156,.4); border-color:var(--acc); }
+.btn.ghost{ color:var(--txt-dim); border-color:rgba(255,255,255,.12); background:transparent; }
+.btn.ghost:hover{ color:var(--acc-2); border-color:var(--acc-2); background:rgba(0,229,255,.07); box-shadow:0 0 22px rgba(0,229,255,.25); }
+.btn svg{ width:14px; height:14px; }
 
-    .logo {
-        font-family: 'Fira Code', monospace;
-        font-size: 1.4rem;
-        color: var(--neon-green);
-        font-weight: 600;
-        text-decoration: none;
-    }
+.stats{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line);
+  border-radius:var(--r); overflow:hidden; max-width:780px;
+}
+.stat{ background:var(--panel); padding:18px 16px; }
+.stat b{ display:block; font-size:clamp(1.3rem,3vw,1.85rem); color:var(--acc); font-weight:600; letter-spacing:-.02em; text-shadow:var(--glow-sm); }
+.stat span{ font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--txt-mute); }
 
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-    }
+.scrollcue{
+  position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+  font-size:10px; letter-spacing:.28em; color:var(--txt-mute); text-transform:uppercase;
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+}
+.scrollcue i{ display:block; width:1px; height:26px; background:linear-gradient(var(--acc),transparent); animation:drop 1.9s ease-in-out infinite; }
+@keyframes drop{ 0%{transform:scaleY(.2);transform-origin:top;} 50%{transform:scaleY(1);transform-origin:top;} 51%{transform:scaleY(1);transform-origin:bottom;} 100%{transform:scaleY(.2);transform-origin:bottom;} }
 
-    nav a {
-        color: var(--text-main);
-        text-decoration: none;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.9rem;
-        transition: color 0.2s ease;
-    }
+section.sec{ padding:92px 0; position:relative; }
+section.sec + section.sec{ border-top:1px solid rgba(0,255,156,.07); }
+.sec-head{ display:flex; align-items:flex-end; gap:16px; margin-bottom:42px; flex-wrap:wrap; }
+.sec-num{ font-size:11px; color:var(--txt-mute); letter-spacing:.2em; border:1px solid var(--line); padding:4px 9px; border-radius:var(--r); background:var(--panel); }
+.sec-head h2{ font-size:clamp(1.5rem,4vw,2.15rem); color:#e6fff2; text-transform:uppercase; letter-spacing:-.02em; }
+.sec-head h2 em{ font-style:normal; color:var(--acc); }
+.sec-head h2::before{ content:"// "; color:var(--acc-dim); font-weight:400; }
+.sec-rule{ flex:1; height:1px; background:linear-gradient(90deg,var(--line-2),transparent); min-width:40px; margin-bottom:9px; }
+.sec-sub{ width:100%; color:var(--txt-mute); font-size:12.5px; margin-top:-2px; }
 
-    nav a:hover, nav a:focus-visible { color: var(--neon-blue); }
+.reveal{ opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1); }
+.reveal.in{ opacity:1; transform:none; }
 
-    .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 40px 24px;
-    }
+.term{
+  border:1px solid var(--line); border-radius:var(--r);
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  box-shadow:0 20px 50px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+  overflow:hidden;
+}
+.term-bar{ display:flex; align-items:center; gap:8px; padding:9px 13px; background:rgba(0,255,156,.045); border-bottom:1px solid var(--line); }
+.term-bar .dots{ display:flex; gap:6px; }
+.term-bar .dots i{ width:9px; height:9px; border-radius:50%; background:#1d2c26; }
+.term-bar .dots i:nth-child(1){ background:#ff5f57; } .term-bar .dots i:nth-child(2){ background:#febc2e; } .term-bar .dots i:nth-child(3){ background:#28c840; }
+.term-bar .ttl{ font-size:11.5px; color:var(--txt-mute); letter-spacing:.08em; margin-left:4px; }
+.term-bar .rt{ margin-left:auto; font-size:10.5px; color:var(--acc-dim); letter-spacing:.12em; }
+.term-body{ padding:22px; font-size:13.5px; }
 
-    .hero { text-align: center; padding: clamp(48px, 10vh, 90px) 0; }
+.tline{ margin-bottom:5px; white-space:pre-wrap; word-break:break-word; }
+.tline .p{ color:var(--acc); } .tline .c{ color:#e6fff2; } .tline .k{ color:var(--acc-2); }
+.tline .s{ color:var(--txt-dim); } .tline .v{ color:var(--warn); }
+.tline .r{ color:var(--danger); } .tline .m{ color:var(--txt-mute); }
 
-    .hero h1 {
-        font-family: 'Fira Code', monospace;
-        font-size: clamp(2.2rem, 8vw, 4rem);
-        margin-bottom: 10px;
-        background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+.kv{ display:grid; grid-template-columns:150px 1fr; gap:2px 16px; margin:12px 0; }
+.kv dt{ color:var(--acc-dim); }
+.kv dd{ margin:0; color:var(--txt); }
 
-    .hero p { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-muted); margin-bottom: 20px; }
+.about-grid{ display:grid; grid-template-columns:1.25fr .95fr; gap:26px; align-items:start; }
+.bio p{ color:var(--txt-dim); }
+.bio p strong{ color:var(--txt); font-weight:400; }
+.bio .hl{ color:var(--acc); }
 
-    .status-line {
-        display: inline-flex; align-items: center; gap: 8px;
-        font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--text-muted);
-    }
-    .status-dot {
-        width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);
-        box-shadow: 0 0 0 0 rgba(0,255,140,.5); animation: pulse 2.2s ease-out infinite;
-    }
-    @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(0,255,140,0); } 100% { box-shadow: 0 0 0 0 rgba(0,255,140,0); } }
-    @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
+.facts{ border-top:1px solid var(--line); margin-top:20px; padding-top:18px; }
+.facts h4{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--txt-mute); margin-bottom:12px; }
+.facts ul{ display:grid; gap:8px; }
+.facts li{ display:flex; gap:10px; font-size:13px; color:var(--txt-dim); }
+.facts li::before{ content:"▸"; color:var(--acc); flex:none; }
+.facts li b{ color:var(--txt); font-weight:400; }
 
-    section { margin-bottom: 60px; }
+.idcard{ padding:0; }
+.ascii-face{
+  padding:20px; text-align:center; border-bottom:1px solid var(--line);
+  background:radial-gradient(circle at 50% 30%, rgba(0,255,156,.09), transparent 65%), var(--panel);
+}
+.ascii-face pre{ margin:0 auto; font-size:9.5px; line-height:1.25; color:var(--acc-dim); text-shadow:var(--glow-sm); display:inline-block; text-align:left; }
+.badge-row{ display:flex; flex-wrap:wrap; gap:7px; padding:16px 20px; border-bottom:1px solid var(--line); }
+.badge{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; padding:5px 10px; border:1px solid var(--line-2); border-radius:100px; color:var(--acc); background:rgba(0,255,156,.05); }
+.badge.cy{ color:var(--acc-2); border-color:rgba(0,229,255,.3); background:rgba(0,229,255,.05); }
+.badge.wn{ color:var(--warn); border-color:rgba(255,176,32,.3); background:rgba(255,176,32,.05); }
 
-    h2 {
-        font-family: 'Fira Code', monospace;
-        font-size: clamp(1.4rem, 4vw, 2rem);
-        color: var(--neon-blue);
-        margin-bottom: 25px;
-        display: inline-block;
-        border-bottom: 2px solid var(--neon-blue);
-        padding-bottom: 5px;
-    }
+.avail{ padding:16px 20px; display:flex; gap:12px; align-items:center; font-size:12.5px; }
+.avail .lamp{ width:9px; height:9px; border-radius:50%; background:var(--acc); box-shadow:var(--glow); animation:pulse 2s infinite; flex:none; }
+.avail span{ color:var(--txt-dim); }
+.avail b{ color:var(--acc); font-weight:400; }
 
-    h2::before { content: "> "; color: var(--neon-green); }
+.skills-grid{ display:grid; grid-template-columns:1.15fr .95fr; gap:26px; align-items:start; }
+.chipgroup{ margin-bottom:24px; }
+.chipgroup h3{
+  font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--acc); margin-bottom:14px; display:flex; align-items:center; gap:10px;
+}
+.chipgroup h3::before{ content:"["; color:var(--txt-mute); } .chipgroup h3::after{ content:"]"; color:var(--txt-mute); }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-size:12px; padding:6px 12px; border:1px solid var(--line);
+  border-radius:var(--r); background:var(--panel); color:var(--txt-dim); transition:.18s; cursor:default;
+}
+.chip:hover{ color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.07); transform:translateY(-2px); box-shadow:var(--glow-sm); }
+.chip b{ color:var(--acc-2); font-weight:400; }
+.chip.wip{ color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.08); box-shadow:var(--glow-sm); }
+.chip.wip b{
+  color:#02120b; background:var(--acc); padding:1px 8px; border-radius:100px;
+  font-size:9px; letter-spacing:.12em; text-transform:uppercase; margin-left:7px; font-weight:700;
+}
 
-    .card {
-        background-color: rgba(20, 20, 24, 0.5);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        padding: clamp(18px, 4vw, 25px);
-        margin-bottom: 20px;
-        transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-    }
+.skill{ margin-bottom:15px; }
+.skill .top{ display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:6px; }
+.skill .top .nm{ color:var(--txt); }
+.skill .top .pc{ color:var(--txt-mute); }
+.bar{ height:7px; background:rgba(0,255,156,.07); border:1px solid rgba(0,255,156,.1); border-radius:2px; overflow:hidden; position:relative; }
+.bar i{
+  display:block; height:100%; width:0;
+  background:linear-gradient(90deg,var(--acc-dim),var(--acc));
+  box-shadow:0 0 10px rgba(0,255,156,.5);
+  transition:width 1.15s cubic-bezier(.2,.8,.25,1); position:relative;
+}
+.bar i::after{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 2px,transparent 2px 5px); }
+.bar.cy i{ background:linear-gradient(90deg,#0d7f96,var(--acc-2)); box-shadow:0 0 10px rgba(0,229,255,.45); }
+.bar.wn i{ background:linear-gradient(90deg,#8a5f10,var(--warn)); box-shadow:0 0 10px rgba(255,176,32,.4); }
+.in .bar i{ width:var(--pct); }
 
-    .card:hover {
-        border-color: var(--neon-green);
-        box-shadow: 0 0 15px rgba(0, 255, 140, 0.1);
-        transform: translateY(-2px);
-        background-color: rgba(20, 20, 24, 0.7);
-    }
+.lablist{ display:grid; gap:8px; }
+.lablist li{ display:flex; gap:10px; align-items:baseline; font-size:13px; color:var(--txt-dim); }
+.lablist li::before{ content:"▸"; color:var(--acc); flex:none; }
+.lablist li b{ color:var(--txt); font-weight:400; }
+.lablist li .st{ margin-left:auto; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); border:1px solid rgba(0,255,156,.3); border-radius:100px; padding:1px 8px; background:rgba(0,255,156,.06); white-space:nowrap; }
 
-    .card h3 {
-        color: var(--neon-green);
-        font-family: 'Fira Code', monospace;
-        margin-bottom: 10px;
-        font-size: 1rem;
-    }
+.road-intro{ max-width:640px; color:var(--txt-dim); font-size:13.5px; margin-bottom:34px; }
+.road-intro strong{ color:var(--txt); font-weight:400; }
+.road-legend{ display:flex; gap:20px; font-size:11px; color:var(--txt-mute); letter-spacing:.1em; text-transform:uppercase; margin-bottom:26px; }
+.road-legend i{ display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:7px; }
+.road-legend .l1 i{ background:var(--acc); box-shadow:var(--glow-sm); }
+.road-legend .l2 i{ background:transparent; border:2px solid var(--acc-dim); width:7px; height:7px; }
 
-    .card h3.sub-heading { margin-top: 20px; }
+.road{ position:relative; }
+.road-item{ display:grid; grid-template-columns:28px 1fr; gap:0 16px; padding-bottom:30px; position:relative; }
+.road-item:last-child{ padding-bottom:0; }
+.road-item::before{ content:""; position:absolute; left:13px; top:22px; bottom:-4px; width:1px; background:linear-gradient(var(--line-2), rgba(0,255,156,.06)); }
+.road-item:last-child::before{ display:none; }
+.road-item .node{ position:relative; z-index:1; width:11px; height:11px; border-radius:50%; border:2px solid var(--acc-dim); background:var(--bg); margin:5px auto 0; }
+.road-item.now .node{ border-color:var(--acc); box-shadow:var(--glow); animation:pulse 2.2s infinite; }
+.road-body h4{ font-size:12px; letter-spacing:.14em; color:var(--acc-2); margin-bottom:4px; }
+.road-body .yr{ font-size:10.5px; color:var(--txt-mute); letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
+.road-body .chips .chip{ font-size:11.5px; }
 
-    .card p + p { margin-top: 12px; }
+.projects{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+.proj-card{
+  border:1px solid var(--line); border-radius:var(--r);
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  overflow:hidden; height:100%; display:flex; flex-direction:column;
+  transition:.25s; position:relative;
+}
+.proj-card::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition:.25s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,0%), rgba(0,255,156,.1), transparent 55%);
+}
+.proj-card:hover{ border-color:var(--line-2); transform:translateY(-4px); box-shadow:0 26px 50px -30px rgba(0,255,156,.35); }
+.proj-card:hover::before{ opacity:1; }
+.proj-bar{ display:flex; align-items:center; gap:9px; padding:9px 13px; background:rgba(0,255,156,.045); border-bottom:1px solid var(--line); font-size:11.5px; }
+.proj-bar .idx{ color:var(--txt-mute); letter-spacing:.1em; }
+.proj-bar .nm{ color:var(--acc); letter-spacing:.05em; }
+.proj-bar .st{ margin-left:auto; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 8px; border-radius:100px; }
+.st.live{ color:var(--acc); border:1px solid rgba(0,255,156,.3); background:rgba(0,255,156,.07); }
+.st.team{ color:var(--acc-2); border:1px solid rgba(0,229,255,.3); background:rgba(0,229,255,.06); }
+.proj-body{ padding:18px; flex:1; display:flex; flex-direction:column; }
+.proj-body h3{ font-size:16.5px; color:#e6fff2; margin-bottom:4px; }
+.proj-body .tag1{ font-size:11px; color:var(--acc-dim); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
+.proj-body p{ font-size:13px; color:var(--txt-dim); margin-bottom:14px; }
+.proj-body p b{ color:var(--txt); font-weight:400; }
+.metrics{ display:flex; flex-wrap:wrap; gap:6px 16px; padding:12px 0; border-top:1px solid rgba(0,255,156,.08); border-bottom:1px solid rgba(0,255,156,.08); margin-bottom:14px; }
+.metric{ font-size:11.5px; color:var(--txt-mute); display:flex; gap:6px; align-items:center; }
+.metric b{ color:var(--acc); font-weight:400; }
+.metric.c b{ color:var(--acc-2); }
+.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.tag{ font-size:10.5px; padding:3px 8px; border:1px solid rgba(0,229,255,.22); border-radius:3px; color:var(--acc-2); background:rgba(0,229,255,.05); }
+.proj-links{ margin-top:auto; display:flex; gap:16px; font-size:12px; }
+.proj-links a{ display:inline-flex; align-items:center; gap:6px; color:var(--txt-dim); letter-spacing:.06em; }
+.proj-links a::before{ content:"→"; color:var(--acc-dim); }
+.proj-links a:hover{ color:var(--acc); }
+.proj-links a:hover::before{ color:var(--acc); }
+.proj-links .nolink{ color:var(--txt-mute); font-size:11.5px; font-style:italic; }
 
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skills-grid + h3 { margin-top: 20px; }
+.edu-card .term-body{ display:flex; flex-wrap:wrap; gap:8px 26px; align-items:baseline; }
+.edu-deg{ font-size:clamp(1rem,2.6vw,1.25rem); color:#e6fff2; }
+.edu-deg em{ font-style:normal; color:var(--acc); }
+.edu-yrs{ font-size:12px; color:var(--txt-mute); letter-spacing:.18em; }
+.edu-note{ width:100%; color:var(--txt-dim); font-size:13px; margin-top:6px; }
+.edu-note b{ color:var(--acc); font-weight:400; }
 
-    .skill-tag {
-        background: rgba(0, 217, 255, 0.1);
-        color: var(--neon-blue);
-        padding: 8px 15px;
-        border-radius: 4px;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.85rem;
-        border: 1px solid rgba(0, 217, 255, 0.2);
-    }
+.contact-grid{ display:grid; grid-template-columns:1.35fr .85fr; gap:26px; align-items:start; }
+#repl{ height:330px; overflow-y:auto; padding:18px; font-size:13px; }
+#repl .out{ margin-bottom:3px; white-space:pre-wrap; word-break:break-word; }
+#repl .out.err{ color:var(--danger); }
+#repl .out.ok{ color:var(--acc); }
+#repl .out.info{ color:var(--txt-dim); }
+#repl .out.hi{ color:#e6fff2; }
+#repl .out.lnk a{ color:var(--acc-2); text-decoration:underline; text-decoration-color:rgba(0,229,255,.35); }
+.repl-input{ display:flex; align-items:center; gap:9px; padding:12px 18px; border-top:1px solid var(--line); background:rgba(0,255,156,.035); }
+.repl-input .p{ color:var(--acc); font-size:13px; white-space:nowrap; }
+#cmd{ flex:1; background:transparent; border:0; outline:0; color:#e6fff2; font-family:var(--mono); font-size:13px; caret-color:var(--acc); }
+.repl-hint{ padding:9px 18px; border-top:1px solid rgba(0,255,156,.07); font-size:11px; color:var(--txt-mute); display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.qcmd{ background:transparent; border:1px solid var(--line); border-radius:3px; color:var(--acc-dim); font-size:10.5px; padding:3px 8px; cursor:pointer; transition:.15s; }
+.qcmd:hover{ color:var(--acc); border-color:var(--acc); background:rgba(0,255,156,.07); }
 
-    ul.custom-list { list-style: none; }
-    ul.custom-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
-    ul.custom-list li::before { content: "▹"; position: absolute; left: 0; color: var(--neon-green); }
-    ul.custom-list li a { text-decoration: none; transition: color 0.2s ease; }
-    ul.custom-list li a:hover, ul.custom-list li a:focus-visible { color: var(--neon-blue); text-shadow: 0 0 8px rgba(0, 217, 255, 0.4); }
+.contact-card{ padding:22px; }
+.contact-card h3{ font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--txt-mute); margin-bottom:16px; }
+.clist{ display:grid; gap:2px; margin-bottom:20px; }
+.clist a, .clist .row{
+  display:flex; align-items:center; gap:12px; padding:11px 12px;
+  border:1px solid transparent; border-radius:var(--r); color:var(--txt-dim);
+  font-size:13px; transition:.18s;
+}
+.clist a:hover{ border-color:var(--line-2); background:rgba(0,255,156,.05); color:var(--acc); transform:translateX(3px); }
+.clist svg{ width:16px; height:16px; flex:none; opacity:.75; }
+.clist a:hover svg{ opacity:1; }
+.clist .lbl{ margin-left:auto; font-size:10px; letter-spacing:.14em; color:var(--txt-mute); text-transform:uppercase; }
+.clist .row .val{ color:var(--txt); }
+.copybtn{ margin-left:auto; background:transparent; border:1px solid var(--line); color:var(--txt-mute); font-size:10px; padding:3px 9px; border-radius:3px; cursor:pointer; letter-spacing:.1em; text-transform:uppercase; transition:.15s; }
+.copybtn:hover{ color:var(--acc); border-color:var(--acc); }
+.copybtn.done{ color:var(--acc); border-color:var(--acc); }
+.note-box{ border-top:1px solid var(--line); padding-top:16px; font-size:12px; color:var(--txt-dim); }
+.note-box b{ color:var(--acc); font-weight:400; }
 
-    .project-link {
-        font-size: 0.8rem;
-        margin-left: 8px;
-        font-family: 'Fira Code', monospace;
-        text-decoration: none;
-    }
-    .project-link:hover, .project-link:focus-visible { color: var(--neon-blue); }
+footer{ border-top:1px solid var(--line); padding:34px 0; background:var(--bg-2); }
+.foot{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-size:11.5px; color:var(--txt-mute); }
+.foot .sep{ color:var(--acc-dim); }
+.foot a{ color:var(--txt-dim); }
+.foot a:hover{ color:var(--acc); }
+.foot .right{ margin-left:auto; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.totop{ background:transparent; border:1px solid var(--line); border-radius:var(--r); color:var(--txt-dim); font-size:10.5px; padding:6px 11px; cursor:pointer; letter-spacing:.12em; text-transform:uppercase; transition:.18s; }
+.totop:hover{ color:var(--acc); border-color:var(--acc); box-shadow:var(--glow-sm); }
 
-    .tag-line { color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.85rem; }
+#toast{
+  position:fixed; left:50%; bottom:26px; transform:translate(-50%,20px);
+  background:var(--panel-2); border:1px solid var(--acc); color:var(--acc);
+  padding:10px 18px; border-radius:var(--r); font-size:12px; letter-spacing:.08em;
+  z-index:9200; opacity:0; pointer-events:none; transition:.28s; box-shadow:0 0 26px rgba(0,255,156,.25);
+}
+#toast.show{ opacity:1; transform:translate(-50%,0); }
 
+.audio-controls{
+  position:fixed; bottom:30px; right:30px; z-index:1200;
+  display:flex; align-items:center; gap:8px;
+}
+.audio-btn{
+  background:rgba(10,10,12,.7); color:var(--acc);
+  border:1px solid var(--acc); padding:8px 15px;
+  font-family:var(--mono); font-size:.82rem; letter-spacing:.05em; cursor:pointer;
+  backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+  transition:all .3s ease;
+}
+.audio-btn:hover:not(:disabled){ background:var(--acc); color:var(--bg); box-shadow:0 0 12px rgba(0,255,140,.5); }
+.audio-btn:disabled{ opacity:.45; cursor:not-allowed; }
+.vol-btn{
+  background:rgba(10,10,12,.7); color:var(--acc);
+  border:1px solid var(--acc); width:32px; height:32px;
+  font-family:var(--mono); font-size:1rem; line-height:1; cursor:pointer;
+  backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+  transition:all .3s ease;
+}
+.vol-btn:hover{ background:var(--acc); color:var(--bg); box-shadow:0 0 10px rgba(0,255,140,.5); }
+.vol-label{ font-family:var(--mono); font-size:.7rem; color:var(--txt-dim); min-width:34px; text-align:center; }
+#bgstatus{
+  position:fixed; left:16px; bottom:30px; z-index:1200;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--acc); opacity:0;
+  transform:translateY(6px); transition:opacity .4s ease, transform .4s ease;
+  pointer-events:none;
+}
+#bgstatus.show{ opacity:1; transform:translateY(0); }
+#bgstatus.warn{ color:var(--danger); }
+@media (max-width:480px){
+  .audio-controls{ bottom:18px; right:16px; }
+  .vol-label{ display:none; }
+}
 
-    .roadmap-card { padding: clamp(20px, 4vw, 30px); }
-    .roadmap-title {
-        font-family: 'Fira Code', monospace;
-        color: var(--neon-green);
-        font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-        font-weight: 700;
-        margin-bottom: 14px;
-    }
-    .roadmap-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px; max-width: 62ch; }
-    .phase {
-        font-family: 'Fira Code', monospace;
-        font-size: 0.85rem;
-        color: var(--neon-blue);
-        margin: 22px 0 12px;
-    }
-    .phase:first-of-type { margin-top: 0; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .pill {
-        border: 1px solid rgba(0, 217, 255, 0.35);
-        background: rgba(0, 217, 255, 0.05);
-        color: var(--text-main);
-        font-family: 'Fira Code', monospace;
-        font-size: 0.85rem;
-        padding: 12px 18px;
-        border-radius: 6px;
-    }
-    .pill.active {
-        border-color: var(--neon-green);
-        background: rgba(0, 255, 140, 0.08);
-        color: var(--neon-green);
-    }
+@media (max-width:960px){
+  .about-grid, .contact-grid, .skills-grid, .projects{ grid-template-columns:1fr; }
+  .stats{ grid-template-columns:repeat(2,1fr); }
+  .navstatus{ display:none; }
+}
+@media (max-width:720px){
+  :root{ --nav-h:54px; }
+  body{ font-size:14px; }
+  .wrap{ padding:0 18px; }
+  .navlinks{ display:none; }
+  #burger{ display:block; }
+  section.sec{ padding:64px 0; }
+  .term-body, .proj-body{ padding:16px; }
+  .kv{ grid-template-columns:1fr; gap:0; }
+  .kv dt{ margin-top:9px; }
+  h1.glitch{ letter-spacing:-.02em; }
+  .ascii-face pre{ font-size:7px; }
+  #repl{ height:280px; }
+  .foot .right{ margin-left:0; width:100%; }
+}
+@media (max-width:400px){ .stats{ grid-template-columns:1fr; } }
 
-    .contact-list { list-style: none; font-family: 'Fira Code', monospace; font-size: 0.95rem; }
-    .contact-list li { margin-bottom: 10px; }
-    .contact-list a { text-decoration: none; color: var(--neon-blue); }
-    .contact-list a:hover, .contact-list a:focus-visible { text-shadow: 0 0 8px rgba(0, 217, 255, 0.4); }
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  .reveal{ opacity:1; transform:none; }
+  .bar i{ width:var(--pct); }
+  #matrix, .flicker{ display:none; }
+}
 
-    footer {
-        text-align: center;
-        padding: 30px;
-        font-family: 'Fira Code', monospace;
-        color: var(--text-muted);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        margin-top: 50px;
-        font-size: 0.85rem;
-    }
+.hero-grid, .crt, .flicker { display: none !important; }
 
-    @media (max-width: 640px) {
-        nav { padding: 16px 20px; }
-        .container { padding: 30px 18px; }
-        nav ul { gap: 16px; }
-    }
 </style>
+
+<noscript>
+<style>
+  #boot{ display:none !important; }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .bar i{ width:var(--pct) !important; }
+  #typed::after{ content:"Blue Team Enthusiast"; }
+  #repl, .repl-input, .repl-hint{ display:none; }
+</style>
+</noscript>
 </head>
 <body>
 
-<a class="skip" href="#main">skip to content</a>
+<video id="bgVideo" autoplay loop muted playsinline class="video-bg" aria-hidden="true">
+  <source src="bg-video.mp4" type="video/mp4">
+</video>
+<div class="overlay" aria-hidden="true"></div>
 
-<audio id="bgAudio" loop>
-    <source src="bg-audio.mp3" type="audio/mpeg">
+<audio id="bgAudio" loop preload="auto">
+  <source src="bg-audio.mp3" type="audio/mpeg">
 </audio>
 
-<video id="bgVideo" autoplay loop muted playsinline class="video-bg">
-    <source src="bg-video.mp4" type="video/mp4">
-</video>
-
-<div class="overlay"></div>
-
 <div class="audio-controls">
-    <button id="audioBtn" class="audio-btn">[ Play Audio ]</button>
-    <button id="volDown" class="vol-btn" aria-label="Volume down" type="button">−</button>
-    <span id="volLabel" class="vol-label">30%</span>
-    <button id="volUp" class="vol-btn" aria-label="Volume up" type="button">+</button>
+  <button id="audioBtn" class="audio-btn" type="button">[ Play Audio ]</button>
+  <button id="volDown" class="vol-btn" aria-label="Volume down" type="button">−</button>
+  <span id="volLabel" class="vol-label">30%</span>
+  <button id="volUp" class="vol-btn" aria-label="Volume up" type="button">+</button>
+</div>
+<div id="bgstatus" role="status" aria-live="polite"></div>
+
+<div class="crt" aria-hidden="true"></div>
+<div class="flicker" aria-hidden="true"></div>
+
+<div id="boot" role="status" aria-live="polite" aria-label="Loading">
+  <div class="boot-inner" id="bootLog"></div>
+  <button id="bootSkip" type="button">skip [esc]</button>
 </div>
 
-<nav aria-label="Main navigation">
-    <a class="logo" href="#top">0xL0gic</a>
-    <ul>
-        <li><a href="#about">about</a></li>
-        <li><a href="#skills">skills</a></li>
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#certs">certs</a></li>
-        <li><a href="#contact">contact</a></li>
-    </ul>
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="p">rakan@</span>0xL0g1c<span class="p">:~$</span>
+    </div>
+    <div class="navlinks" id="navlinks">
+      <a href="#about"    data-sec="about">about</a>
+      <a href="#skills"   data-sec="skills">skills</a>
+      <a href="#roadmap"  data-sec="roadmap">roadmap</a>
+      <a href="#projects" data-sec="projects">projects</a>
+      <a href="#education" data-sec="education">edu</a>
+      <a href="#contact"  data-sec="contact">contact</a>
+    </div>
+    <div class="navstatus">
+      <span class="live">●</span> SC-200 <span class="live">in progress</span> · <span id="clock">--:--:--</span> UTC
+    </div>
+    <button id="burger" type="button" aria-label="Toggle menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
 </nav>
 
-<main id="main" class="container">
+<div id="mobileMenu">
+  <a href="#about">about</a>
+  <a href="#skills">skills</a>
+  <a href="#roadmap">roadmap</a>
+  <a href="#projects">projects</a>
+  <a href="#education">education</a>
+  <a href="#contact">contact</a>
+</div>
 
-    <section class="hero" id="top" aria-label="Introduction">
-        <h1>0xL0gic</h1>
-        <p>Cybersecurity Undergraduate | Blue Team Enthusiast | Aspiring Cloud Security Engineer</p>
-        <span class="status-line"><span class="status-dot" aria-hidden="true"></span>Currently: SC-200 · TryHackMe Cyber Security 101 path</span>
-    </section>
+<header class="hero" id="top">
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
 
-    <section id="about">
-        <h2>about_me</h2>
-        <div class="card">
-            <p>I'm a Cybersecurity undergraduate focused on <strong>Blue Team</strong> operations, working toward a career in <strong>Cloud Security</strong>.</p>
-            <p>Background in cybersecurity fundamentals, networking basics, and social engineering awareness. Before this, I supervised daily operations at a retail branch — leadership, time management, and problem-solving under pressure that carry directly into security work. Currently building hands-on skills through labs and course projects, and looking ahead to internship opportunities.</p>
+  <div class="wrap">
+    <div class="kicker"><b>●</b> seeking internship — blue team / cloud security</div>
+
+    <h1 class="glitch" data-text="RaKaN">RaKaN</h1>
+    <div class="handle"><b>a.k.a</b> 0xL0g1c</div>
+
+    <div class="prompt">
+      <span class="u">visitor</span><span class="at">@</span><span class="h">portfolio</span><span class="at">:</span><span class="d">~</span><span class="at">$</span>
+      <span id="typed"></span><span class="caret" aria-hidden="true"></span>
+    </div>
+
+    <p class="hero-lead">
+      Cybersecurity undergraduate focused on <span class="hl">Blue Team</span> operations,
+      working toward a career in <span class="hl">Cloud Security</span>. Background in
+      cybersecurity fundamentals, networking basics and social engineering awareness —
+      currently building hands-on skills through <strong>labs and course projects</strong>.
+    </p>
+
+    <div class="status-line"><span class="status-dot" aria-hidden="true"></span>Currently: SC-200 · TryHackMe Cyber Security 101 path</div>
+
+    <div class="btnrow">
+      <a class="btn" href="#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg> View projects
+      </a>
+      <a class="btn ghost" href="#roadmap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V6M4 10h10M14 20V4M14 12h6"/></svg> Cert roadmap
+      </a>
+      <a class="btn ghost" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg> Get in touch
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b data-count="2029">2029</b><span>Expected graduation</span></div>
+      <div class="stat"><b data-count="8">8</b><span>Certs on roadmap</span></div>
+      <div class="stat"><b data-count="2">2</b><span>Active lab platforms</span></div>
+      <div class="stat"><b data-count="11">11</b><span>DB entities normalised</span></div>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><span>scroll</span><i></i></div>
+</header>
+
+<main>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2>who<em>ami</em></h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ cat ./profile/summary.txt</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="term">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="ttl">bash — 92×24</span>
+            <span class="rt">SESSION ACTIVE</span>
+          </div>
+          <div class="term-body">
+            <div class="tline"><span class="p">visitor@portfolio</span><span class="m">:</span><span class="k">~</span><span class="m">$</span> <span class="c">whoami --verbose</span></div>
+            <dl class="kv">
+              <dt>identity</dt>   <dd>Rakan <span class="m">(handle: 0xL0g1c)</span></dd>
+              <dt>role</dt>       <dd>Cybersecurity Undergraduate</dd>
+              <dt>focus</dt>      <dd>Blue Team operations → Cloud Security</dd>
+              <dt>degree</dt>     <dd>BSc (Hons) Computer Science (Cyber Security) · 2026–2029</dd>
+              <dt>on_the_way</dt> <dd>Microsoft SC-200 <span style="color:var(--acc)">(in progress)</span> · CompTIA Security+</dd>
+              <dt>labs</dt>       <dd>TryHackMe · HackTheBox <span class="m">(both active)</span></dd>
+              <dt>status</dt>     <dd><span style="color:var(--acc)">● seeking internships</span></dd>
+            </dl>
+            <div class="tline"><span class="p">visitor@portfolio</span><span class="m">:</span><span class="k">~</span><span class="m">$</span> <span class="c">./describe.sh --style plain</span></div>
+            <div class="tline"><span class="s">Loading narrative… done.</span></div>
+          </div>
         </div>
-    </section>
 
-    <section id="skills">
-        <h2>core_skills</h2>
-        <div class="card">
-            <h3>[ Operating Systems &amp; Tools ]</h3>
-            <div class="skills-grid">
-                <span class="skill-tag">Kali Linux</span>
-                <span class="skill-tag">Parrot OS</span>
-                <span class="skill-tag">Windows</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">SQL</span>
+        <div class="bio" style="margin-top:22px">
+          <p>
+            I'm a cybersecurity undergraduate focused on <span class="hl">Blue Team</span>
+            operations, working toward a career in <span class="hl">Cloud Security</span>.
+            My foundation so far: cybersecurity fundamentals, networking basics, and social
+            engineering awareness — the defensive side of the house is where I want to build.
+          </p>
+          <p>
+            Before all this I <strong>supervised daily operations at a retail branch</strong>.
+            That job was a crash course in <span class="hl">leadership, time management and
+            problem-solving under pressure</span> — coordinating people, triaging whatever
+            broke first, and staying calm while everything was on fire. Those habits carry
+            directly into security work: an incident is just a bad Saturday with better logs.
+          </p>
+          <p>
+            Right now I'm building hands-on skills through labs and course projects, following
+            a structured <strong>three-year certification roadmap</strong> (below), and looking
+            ahead to internship opportunities where I can be useful to a real SOC or cloud team.
+          </p>
+        </div>
+
+        <div class="facts">
+          <h4>// what i bring to a team</h4>
+          <ul>
+            <li><b>Defensive mindset</b> — SOC fundamentals, detection thinking, MITRE-flavoured curiosity</li>
+            <li><b>OSINT &amp; information gathering</b> — research discipline, sources, documentation habits</li>
+            <li><b>Data modelling &amp; SQL</b> — normalised schemas, JOINs, dynamic calculations (11-entity project DB)</li>
+            <li><b>Python</b> — team-built management system; automation-first instincts</li>
+            <li><b>Operational leadership</b> — ran a retail branch's daily ops before switching to security</li>
+            <li><b>A plan</b> — 8 certifications mapped across 3 years, SC-200 already in progress</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="term idcard">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="ttl">id_card.svg</span>
+            <span class="rt">STUDENT</span>
+          </div>
+          <div class="ascii-face">
+<pre>
+        ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+     ▄██▀▀            ▀▀██▄
+   ▄█▀    ▄▄▄      ▄▄▄    ▀█▄
+  ██     █▀▀█      █▀▀█     ██
+  ██     █▄▄█      █▄▄█     ██
+  ██          ▄▄          ██
+  ██        ▀▀▀▀▀▀        ██
+   ▀█▄                   ▄█▀
+     ▀██▄    ▄▄▄▄▄▄    ▄██▀
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+   ──────────────────────────
+     OPERATOR  ·  0xL0g1c
+</pre>
+          </div>
+          <div class="badge-row">
+            <span class="badge">SC-200 · in progress</span>
+            <span class="badge wn">Security+ · planned</span>
+            <span class="badge cy">TryHackMe</span>
+            <span class="badge cy">HackTheBox</span>
+            <span class="badge">BSc CyberSec '29</span>
+          </div>
+          <div class="avail">
+            <span class="lamp"></span>
+            <span>Current status: <b>Seeking internships</b> — blue team, SOC or cloud security teams.</span>
+          </div>
+          <div class="avail" style="border-top:1px solid var(--line)">
+            <span class="lamp" style="background:var(--acc-2); box-shadow:0 0 12px rgba(0,229,255,.5)"></span>
+            <span>Fastest reply: <b>email</b> — rakan@0xl0g1c.me, usually within a day or two.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2>cap<em>abilities</em></h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ ./inventory.sh --skills --labs --honest</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="reveal">
+        <div class="chipgroup">
+          <h3>Operating Systems &amp; Tools</h3>
+          <div class="chips">
+            <span class="chip">Kali Linux</span>
+            <span class="chip">Parrot OS</span>
+            <span class="chip">Windows</span>
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+          </div>
+        </div>
+        <div class="chipgroup">
+          <h3>Competencies</h3>
+          <div class="chips">
+            <span class="chip">Cybersecurity Fundamentals</span>
+            <span class="chip">OSINT</span>
+            <span class="chip">Information Gathering</span>
+            <span class="chip">Database Design (ERD / Normalization)</span>
+            <span class="chip">Team Leadership</span>
+          </div>
+        </div>
+        <div class="chipgroup">
+          <h3>Currently sharpening — self-rated</h3>
+          <div class="skill"><div class="top"><span class="nm">Cybersecurity fundamentals</span><span class="pc">75%</span></div><div class="bar"><i style="--pct:75%"></i></div></div>
+          <div class="skill"><div class="top"><span class="nm">OSINT &amp; information gathering</span><span class="pc">70%</span></div><div class="bar"><i style="--pct:70%"></i></div></div>
+          <div class="skill"><div class="top"><span class="nm">SQL &amp; database design</span><span class="pc">80%</span></div><div class="bar cy"><i style="--pct:80%"></i></div></div>
+          <div class="skill"><div class="top"><span class="nm">Python</span><span class="pc">70%</span></div><div class="bar cy"><i style="--pct:70%"></i></div></div>
+          <div class="skill"><div class="top"><span class="nm">Networking basics</span><span class="pc">60%</span></div><div class="bar wn"><i style="--pct:60%"></i></div></div>
+          <div class="skill"><div class="top"><span class="nm">Cloud fundamentals (Azure track)</span><span class="pc">45%</span></div><div class="bar wn"><i style="--pct:45%"></i></div></div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.08s">
+        <div class="term">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="ttl">practice.log</span>
+            <span class="rt">SYNCED</span>
+          </div>
+          <div class="term-body">
+            <div class="chipgroup">
+              <h3>Hands-on Labs</h3>
+              <ul class="lablist">
+                <li><b>TryHackMe</b> — defensive &amp; SOC learning paths · <a href="https://tryhackme.com/p/0xl0gic" target="_blank" rel="noopener">profile</a> <span class="st">active</span></li>
+                <li><b>HackTheBox</b> — boxes &amp; challenges · <a href="https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648" target="_blank" rel="noopener">profile</a> <span class="st">active</span></li>
+              </ul>
             </div>
-
-            <h3 class="sub-heading">[ Competencies ]</h3>
-            <div class="skills-grid">
-                <span class="skill-tag">Cybersecurity Fundamentals</span>
-                <span class="skill-tag">OSINT</span>
-                <span class="skill-tag">Information Gathering</span>
-                <span class="skill-tag">Database Design (ERD / Normalization)</span>
-                <span class="skill-tag">Team Leadership</span>
+            <div class="chipgroup" style="margin-bottom:0">
+              <h3>Workshops &amp; Events</h3>
+              <ul class="lablist">
+                <li><b>How To Get Your First Bounty (Bug Bounty)</b> — by BarqSec &amp; ACS <span class="st">attended</span></li>
+              </ul>
             </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>projects</h2>
-
-        <div class="card">
-            <h3>Gym Management System (Python)
-                <a href="https://github.com/0xL0g1c/Gym-Program" target="_blank" class="project-link">[github.com/0xL0g1c/Gym-Program]</a>
-            </h3>
-            <p>Collaborated with a team to build a system managing gym operations end-to-end — member records, scheduling, and data handling — in Python.</p>
-        </div>
-
-        <div class="card">
-            <h3>Database Design & SQL Development — Apex Media Hub</h3>
-            <p>Designed a fully normalized 11-entity relational database. Engineered complex SQL queries using JOINs and dynamic calculations to track 1,000+ assets and automate penalty reports.</p>
-        </div>
-    </section>
-
-    <section id="certs">
-        <h2>training_&amp;_certs</h2>
-
-        <div class="card">
-            <h3>[ Hands-on Labs ]</h3>
-            <ul class="custom-list">
-                <li><a href="https://tryhackme.com/p/0xl0gic" target="_blank">TryHackMe (Active)</a></li>
-                <li><a href="https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648" target="_blank">HackTheBox (Active)</a></li>
-            </ul>
-
-            <h3 class="sub-heading">[ Workshops &amp; Events ]</h3>
-            <ul class="custom-list">
-                <li>How To Get Your First Bounty (Bug Bounty) — by BarqSec &amp; ACS</li>
-            </ul>
-        </div>
-
-        <div class="card roadmap-card">
-            <p class="roadmap-title">[ Certification Roadmap: Hybrid SOC &amp; Cloud Security ]</p>
-            <p class="roadmap-desc">A structured 3-year strategic learning path aimed at building targeted expertise in Blue Team operations, Cloud Infrastructure, and Defensive Security.</p>
-
-            <p class="phase">[ Year 1: CyberSecurity &amp; SOC Foundations]</p>
-            <div class="pill-row">
-                <span class="pill active">Microsoft SC-200 (In Progress)</span>
-                <span class="pill">CompTIA Security+</span>
+            <div class="note-box" style="margin-top:22px">
+              Labs are where the roadmap becomes muscle memory. Every platform above feeds the
+              same goal: <b>walk into a SOC on day one already comfortable with the tools.</b>
             </div>
-
-            <p class="phase">[ Y1 → Y2: Practical SOC Operations ]</p>
-            <div class="pill-row">
-                <span class="pill">BTL1 (Blue Team Level 1)</span>
-            </div>
-
-            <p class="phase">[ Year 2: Cloud &amp; GRC Foundations ]</p>
-            <div class="pill-row">
-                <span class="pill">Microsoft AZ-900</span>
-                <span class="pill">ISO 27001 Foundation</span>
-            </div>
-
-            <p class="phase">[ Y2 → Y3: Advanced Defensive Security ]</p>
-            <div class="pill-row">
-                <span class="pill">CDSA (Certified Defensive Security Analyst)</span>
-            </div>
-
-            <p class="phase">[ Year 3: Cloud &amp; AI Security ]</p>
-            <div class="pill-row">
-                <span class="pill">Microsoft AZ-104</span>
-                <span class="pill">Microsoft SC-500</span>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="education">
-        <h2>education</h2>
-        <div class="card">
-            <h3>Bachelor of Science (Honours) in Computer Science (Cyber Security)</h3>
-            <p class="tag-line">2026 – 2029</p>
-        </div>
-    </section>
+<section class="sec" id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2>cert <em>roadmap</em></h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ cat plan/certifications.3yr --strategy "hybrid SOC &amp; cloud"</p>
+    </div>
 
-    <section id="contact">
-        <h2>contact</h2>
-        <div class="card">
-            <ul class="contact-list">
-                <li>email: <a href="mailto:rakan@0xlog1c.me">rakan@0xlog1c.me</a>
-                <li>github: <a href="https://github.com/0xL0g1c" target="_blank">github.com/0xL0g1c</a></li>
-            </ul>
+    <p class="road-intro reveal">
+      A structured <strong>3-year strategic learning path</strong> aimed at building targeted
+      expertise in Blue Team operations, cloud infrastructure and defensive security.
+      Each year stacks on the last: SOC foundations first, cloud and GRC second,
+      advanced defence and AI-era cloud security third.
+    </p>
+
+    <div class="road-legend reveal">
+      <span class="l1"><i></i>in progress</span>
+      <span class="l2"><i></i>planned</span>
+    </div>
+
+    <div class="road reveal">
+      <div class="road-item now">
+        <span class="node"></span>
+        <div class="road-body">
+          <h4>[ Year 1 · CyberSecurity &amp; SOC Foundations ]</h4>
+          <div class="yr">now → end of year 1</div>
+          <div class="chips">
+            <span class="chip wip">Microsoft SC-200 <b>in progress</b></span>
+            <span class="chip">CompTIA Security+</span>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="road-item">
+        <span class="node"></span>
+        <div class="road-body">
+          <h4>[ Y1 → Y2 · Practical SOC Operations ]</h4>
+          <div class="yr">bridge year</div>
+          <div class="chips"><span class="chip">BTL1 (Blue Team Level 1)</span></div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="node"></span>
+        <div class="road-body">
+          <h4>[ Year 2 · Cloud &amp; GRC Foundations ]</h4>
+          <div class="yr">year 2</div>
+          <div class="chips">
+            <span class="chip">Microsoft AZ-900</span>
+            <span class="chip">ISO 27001 Foundation</span>
+          </div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="node"></span>
+        <div class="road-body">
+          <h4>[ Y2 → Y3 · Advanced Defensive Security ]</h4>
+          <div class="yr">bridge year</div>
+          <div class="chips"><span class="chip">CDSA (Certified Defensive Security Analyst)</span></div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="node"></span>
+        <div class="road-body">
+          <h4>[ Year 3 · Cloud &amp; AI Security ]</h4>
+          <div class="yr">final year</div>
+          <div class="chips">
+            <span class="chip">Microsoft AZ-104</span>
+            <span class="chip">Microsoft SC-500</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2>field <em>work</em></h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ ls -la ~/projects --sort=date</p>
+    </div>
+
+    <div class="projects">
+      <div class="reveal">
+        <div class="proj-card">
+          <div class="proj-bar"><span class="idx">01</span><span class="nm">gym-management-system</span><span class="st team">team project</span></div>
+          <div class="proj-body">
+            <h3>Gym Management System</h3>
+            <div class="tag1">Python · end-to-end operations</div>
+            <p>
+              Collaborated with a team to build a system managing gym operations
+              <b>end-to-end</b> — member records, scheduling, and data handling —
+              in Python. First real project from blank file to something people actually use,
+              and a lesson in how much of engineering is agreeing on interfaces before code.
+            </p>
+            <div class="metrics">
+              <span class="metric c"><b>Python</b></span>
+              <span class="metric"><b>team-built</b></span>
+              <span class="metric"><b>members · schedule · data</b></span>
+            </div>
+            <div class="tags"><span class="tag">python</span><span class="tag">cli</span><span class="tag">data handling</span><span class="tag">teamwork</span></div>
+            <div class="proj-links">
+              <a href="https://github.com/0xL0g1c/Gym-Program" target="_blank" rel="noopener">github.com/0xL0g1c/Gym-Program</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.06s">
+        <div class="proj-card">
+          <div class="proj-bar"><span class="idx">02</span><span class="nm">apex-media-hub-db</span><span class="st live">coursework</span></div>
+          <div class="proj-body">
+            <h3>Database Design &amp; SQL Development — Apex Media Hub</h3>
+            <div class="tag1">SQL · relational modelling</div>
+            <p>
+              Designed a <b>fully normalized 11-entity relational database</b>.
+              Engineered complex SQL queries using JOINs and dynamic calculations
+              to track <b>1,000+ assets</b> and automate penalty reports.
+              Schemas are a security concern too: clean constraints mean fewer ways
+              for bad data — or bad actors — to slip through.
+            </p>
+            <div class="metrics">
+              <span class="metric"><b>11</b>entities, fully normalized</span>
+              <span class="metric"><b>1,000+</b>assets tracked</span>
+              <span class="metric c"><b>SQL</b>JOINs · dynamic calcs</span>
+            </div>
+            <div class="tags"><span class="tag">sql</span><span class="tag">erd</span><span class="tag">normalization</span><span class="tag">reporting</span></div>
+            <div class="proj-links"><span class="nolink">schema &amp; queries available on request</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <h2>edu<em>cation</em></h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ cat transcripts/degree.txt</p>
+    </div>
+
+    <div class="reveal">
+      <div class="term edu-card">
+        <div class="term-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="ttl">degree.record</span>
+          <span class="rt">ENROLLED</span>
+        </div>
+        <div class="term-body">
+          <div class="edu-deg">Bachelor of Science (Honours) in <em>Computer Science (Cyber Security)</em></div>
+          <div class="edu-yrs">2026 – 2029</div>
+          <p class="edu-note">
+            Degree years are mapped one-to-one onto the <b>certification roadmap</b> above —
+            Year 1 SOC foundations, Year 2 cloud &amp; GRC, Year 3 advanced defensive and
+            AI-era cloud security — so coursework and certifications reinforce each other
+            instead of competing for time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">06</span>
+      <h2>estab<em>lish</em> channel</h2>
+      <span class="sec-rule"></span>
+      <p class="sec-sub">$ nc -v rakan@0xl0g1c.me 587</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="term">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="ttl">secure-shell — contact</span>
+            <span class="rt" id="replStatus">CONNECTED</span>
+          </div>
+          <div class="term-body" style="padding:0">
+            <div id="repl" tabindex="0" aria-live="polite" aria-label="Interactive terminal output"></div>
+            <form class="repl-input" id="replForm" autocomplete="off">
+              <span class="p">visitor@0xL0g1c:~$</span>
+              <input id="cmd" type="text" placeholder="type 'help' and press enter…" aria-label="Terminal command" spellcheck="false">
+            </form>
+            <div class="repl-hint">
+              <span>try:</span>
+              <button class="qcmd" type="button" data-c="help">help</button>
+              <button class="qcmd" type="button" data-c="contact">contact</button>
+              <button class="qcmd" type="button" data-c="labs">labs</button>
+              <button class="qcmd" type="button" data-c="roadmap">roadmap</button>
+              <button class="qcmd" type="button" data-c="intern">intern</button>
+              <button class="qcmd" type="button" data-c="clear">clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.08s">
+        <div class="term contact-card">
+          <div class="term-bar" style="margin:-22px -22px 22px">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="ttl">direct_channels</span>
+            <span class="rt">2 CHANNELS</span>
+          </div>
+          <h3>// reach me directly</h3>
+          <div class="clist">
+            <div class="row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg>
+              <span class="val" id="emailVal">rakan@0xl0g1c.me</span>
+              <button class="copybtn" id="copyEmail" type="button">copy</button>
+            </div>
+            <a href="https://github.com/0xL0g1c" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.9 5.3.9 11.6c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.2.8-.5v-2c-3.1.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.5-.3-5.1-1.3-5.1-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a10.6 10.6 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.6 5.4-5.1 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.4-1.5 7.6-5.7 7.6-10.6C23.1 5.3 18.3.5 12 .5z"/></svg>
+              github.com/0xL0g1c <span class="lbl">code</span>
+            </a>
+            <a href="https://tryhackme.com/p/0xl0gic" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3.5v5c0 5-3.4 9.6-8 11.5-4.6-1.9-8-6.5-8-11.5v-5L12 2z"/></svg>
+              tryhackme.com/p/0xl0gic <span class="lbl">labs</span>
+            </a>
+            <a href="https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v5L12 22V8H7V3z"/></svg>
+              hackthebox · 0xl0gic <span class="lbl">labs</span>
+            </a>
+          </div>
+          <div class="note-box">
+            Email is the fastest route — <b>internships, labs to compare notes on, or a
+            SOC question at 2am</b>, all welcome. GitHub has the code; the roadmap above
+            has the plan.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
 <footer>
-    <p>sys.exit(0) | © 2026 0xL0gic</p>
+  <div class="wrap">
+    <div class="foot">
+      <span>sys.exit(0)</span>
+      <span class="sep">|</span>
+      <span>© <span id="yr">2026</span> 0xL0g1c</span>
+      <span class="sep">|</span>
+      <span>built by hand — zero trackers, zero CDN, zero cookies</span>
+      <div class="right">
+        <a href="#top">rakan@0xL0g1c:~$ exit</a>
+        <button class="totop" id="toTop" type="button">↑ top</button>
+      </div>
+    </div>
+  </div>
 </footer>
 
+<div id="toast" role="status" aria-live="polite">copied to clipboard</div>
+
 <script>
-    const audio = document.getElementById('bgAudio');
-    const video = document.getElementById('bgVideo');
-    const btn = document.getElementById('audioBtn');
-    const volDown = document.getElementById('volDown');
-    const volUp = document.getElementById('volUp');
-    const volLabel = document.getElementById('volLabel');
+(function(){
+"use strict";
 
-    audio.volume = 0.3;
-    volLabel.textContent = Math.round(audio.volume * 100) + '%';
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var observersStarted = false;
 
-    btn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            video.muted = false;
-            btn.innerText = '[ Pause Audio ]';
-            btn.style.borderColor = 'var(--neon-blue)';
-            btn.style.color = 'var(--neon-blue)';
-        } else {
-            audio.pause();
-            video.muted = true;
-            btn.innerText = '[ Play Audio ]';
-            btn.style.borderColor = 'var(--neon-green)';
-            btn.style.color = 'var(--neon-green)';
-        }
-    });
+var BOOT_LINES = [
+  '[  <b>OK</b>  ] POST — memory check passed, curiosity module loaded',
+  '[  <b>OK</b>  ] Loading kernel 6.8.0-hardened … done',
+  '[  <b>OK</b>  ] Mounting /dev/portfolio … rw, noexec, nosuid',
+  '[  <b>OK</b>  ] Starting network-manager … link up',
+  '[  <b>OK</b>  ] Verifying TLS handshake … TLSv1.3 / X25519',
+  '[  <b>OK</b>  ] Loading operator profile: <b>rakan</b> (0xL0g1c) · uid=1000',
+  '[  <b>OK</b>  ] Decrypting project archive … 2 entries',
+  '[  <b>OK</b>  ] Loading certification roadmap … 8 targets over 3 years',
+  '[  <b>OK</b>  ] Syncing lab feeds: tryhackme, hackthebox … <b>active</b>',
+  '[  <span class="wn">WARN</span> ] SC-200 study session still running in background — as intended',
+  '[  <b>OK</b>  ] Starting render pipeline …',
+  '',
+  '  ██████╗ ██████╗ ██████╗ ███████╗   portfolio v2.0.0',
+  '  ██╔══██╗██╔══██╗██╔══██╗██╔════╝   (c) 0xL0g1c',
+  '',
+  '  <span class="ok">All systems nominal. Welcome, visitor.</span>'
+];
 
-    function setVolume(delta) {
-        audio.volume = Math.min(1, Math.max(0, audio.volume + delta));
-        volLabel.textContent = Math.round(audio.volume * 100) + '%';
+var bootLog = document.getElementById("bootLog");
+var bootEl  = document.getElementById("boot");
+var skipBtn = document.getElementById("bootSkip");
+var bootTimer = [];
+var bootDone = false;
+
+function finishBoot(){
+  if(bootDone) return;
+  bootDone = true;
+  bootTimer.forEach(clearTimeout);
+  bootEl.classList.add("done");
+  setTimeout(function(){ if(bootEl.parentNode) bootEl.parentNode.removeChild(bootEl); }, 600);
+  document.body.style.overflow = "";
+  if(typeof startObservers === "function") startObservers();
+}
+
+function runBoot(){
+  if(reduceMotion){ finishBoot(); return; }
+  document.body.style.overflow = "hidden";
+  var delay = 0;
+  BOOT_LINES.forEach(function(line, i){
+    delay += (i === 0 ? 120 : 60) + Math.random()*40;
+    bootTimer.push(setTimeout(function(){
+      var d = document.createElement("div");
+      d.className = "boot-line";
+      d.innerHTML = line || "&nbsp;";
+      d.style.animationDelay = "0s";
+      bootLog.appendChild(d);
+      if(i >= BOOT_LINES.length-1) bootTimer.push(setTimeout(finishBoot, 380));
+    }, delay));
+  });
+  bootTimer.push(setTimeout(finishBoot, delay + 900));
+}
+skipBtn.addEventListener("click", finishBoot);
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") finishBoot(); });
+runBoot();
+
+(function matrix(){
+  var cv = document.getElementById("matrix");
+  if(!cv || reduceMotion) return;
+  var ctx = cv.getContext("2d");
+  if(!ctx) return;
+  var chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノ<>/\\{}[]#$%&*+=?ABCDEF0123456789".split("");
+  var fontSize = 15, cols = 0, drops = [], w = 0, h = 0, dpr = 1;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect();
+    w = Math.max(1, r.width); h = Math.max(1, r.height);
+    cv.width = Math.floor(w*dpr); cv.height = Math.floor(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cols = Math.ceil(w / fontSize);
+    drops = new Array(cols);
+    for(var i=0;i<cols;i++) drops[i] = Math.random() * (h / fontSize) * -1;
+  }
+  var running = true;
+  function draw(){
+    if(!running) return;
+    ctx.fillStyle = "rgba(4,7,10,0.075)";
+    ctx.fillRect(0,0,w,h);
+    ctx.font = fontSize + "px ui-monospace, monospace";
+    for(var i=0;i<cols;i++){
+      var ch = chars[(Math.random()*chars.length)|0];
+      var x = i*fontSize, y = drops[i]*fontSize;
+      ctx.fillStyle = Math.random() > 0.985 ? "#d6fff0" : (Math.random() > 0.9 ? "#00e5ff" : "#00ff9c");
+      ctx.fillText(ch, x, y);
+      if(y > h && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.55;
     }
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var should = en.isIntersecting;
+        if(should && !running){ running = true; draw(); }
+        else if(!should){ running = false; }
+      });
+    }, { threshold: 0 }).observe(cv);
+  }
+  draw();
+})();
 
-    volDown.addEventListener('click', () => setVolume(-0.1));
-    volUp.addEventListener('click', () => setVolume(0.1));
+(function typer(){
+  var phrases = [
+    "Cybersecurity Undergraduate",
+    "Blue Team Enthusiast",
+    "Aspiring Cloud Security Engineer",
+    "SOC Analyst in Training",
+    "Defensive Security Student"
+  ];
+  var el = document.getElementById("typed");
+  if(!el) return;
+  if(reduceMotion){ el.textContent = phrases[0]; return; }
+  var pi = 0, ci = 0, deleting = false;
+  function tick(){
+    var word = phrases[pi];
+    ci += deleting ? -1 : 1;
+    el.textContent = word.slice(0, ci);
+    var wait = deleting ? 34 : 58;
+    if(!deleting && ci === word.length){ wait = 1700; deleting = true; }
+    else if(deleting && ci === 0){ deleting = false; pi = (pi+1) % phrases.length; wait = 300; }
+    setTimeout(tick, wait);
+  }
+  tick();
+})();
+
+var burger = document.getElementById("burger");
+var mobileMenu = document.getElementById("mobileMenu");
+function closeMenu(){ burger.classList.remove("open"); mobileMenu.classList.remove("open"); burger.setAttribute("aria-expanded","false"); }
+burger.addEventListener("click", function(){
+  var open = mobileMenu.classList.toggle("open");
+  burger.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", open ? "true" : "false");
+});
+mobileMenu.addEventListener("click", function(e){ if(e.target.tagName === "A") closeMenu(); });
+
+var navLinks = Array.prototype.slice.call(document.querySelectorAll("#navlinks a"));
+var secIds = ["about","skills","roadmap","projects","education","contact"];
+var secs = secIds.map(function(id){ return document.getElementById(id); });
+if("IntersectionObserver" in window){
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        navLinks.forEach(function(a){ a.classList.toggle("active", a.getAttribute("data-sec") === en.target.id); });
+      }
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  secs.forEach(function(s){ if(s) spy.observe(s); });
+}
+
+(function clock(){
+  var el = document.getElementById("clock");
+  if(!el) return;
+  function pad(n){ return n < 10 ? "0"+n : ""+n; }
+  function tick(){
+    var d = new Date();
+    el.textContent = pad(d.getUTCHours())+":"+pad(d.getUTCMinutes())+":"+pad(d.getUTCSeconds());
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+function countUp(el){
+  var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+  if(reduceMotion){ el.textContent = target; return; }
+  el.textContent = "0";
+  var start = null, dur = 1300;
+  function step(ts){
+    if(!start) start = ts;
+    var p = Math.min((ts - start)/dur, 1);
+    var eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(target * eased);
+    if(p < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
+function startObservers(){
+  if(observersStarted) return; observersStarted = true;
+  var revealables = Array.prototype.slice.call(document.querySelectorAll(".reveal, .stat"));
+  if("IntersectionObserver" in window){
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var t = en.target;
+          if(t.classList.contains("stat")){
+            var b = t.querySelector("b[data-count]");
+            if(b && !b.dataset.done){ b.dataset.done = "1"; countUp(b); }
+          } else {
+            t.classList.add("in");
+          }
+          ro.unobserve(t);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    revealables.forEach(function(el){ ro.observe(el); });
+  } else {
+    revealables.forEach(function(el){ el.classList.add("in"); });
+  }
+}
+
+document.querySelectorAll(".proj-card").forEach(function(card){
+  card.addEventListener("pointermove", function(e){
+    var r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+    card.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
+  });
+});
+
+(function repl(){
+  var out = document.getElementById("repl");
+  var form = document.getElementById("replForm");
+  var input = document.getElementById("cmd");
+  var status = document.getElementById("replStatus");
+  if(!out || !form || !input) return;
+  var history = [], hIdx = -1;
+
+  function print(html, cls){
+    var d = document.createElement("div");
+    d.className = "out" + (cls ? " " + cls : "");
+    d.innerHTML = html;
+    out.appendChild(d);
+    out.scrollTop = out.scrollHeight;
+  }
+  function blank(){ print("&nbsp;"); }
+
+  var DATA = {
+    name: "Rakan",
+    handle: "0xL0g1c",
+    email: "rakan@0xl0g1c.me",
+    github: "https://github.com/0xL0g1c",
+    the: "https://tryhackme.com/p/0xl0gic",
+    htbox: "https://profile.hackthebox.com/profile/019ebd2b-5448-7128-9502-cb6a8c86a648",
+    degree: "BSc (Hons) Computer Science (Cyber Security), 2026–2029"
+  };
+
+  function link(url, label){ return '<a href="'+url+'" target="_blank" rel="noopener">'+(label||url)+'</a>'; }
+  function pad2(s, n){ s = String(s); while(s.length < n) s += " "; return s; }
+
+  var CMDS = {
+    help: function(){
+      print("available commands:", "hi"); blank();
+      var rows = [
+        ["whoami",    "who you are talking to"],
+        ["contact",   "email + github, the real channels"],
+        ["email",     "email address"],
+        ["labs",      "tryhackme / hackthebox / workshops"],
+        ["roadmap",   "the 3-year certification plan"],
+        ["education", "degree &amp; years"],
+        ["projects",  "jump to the project list"],
+        ["skills",    "jump to the capability inventory"],
+        ["intern",    "internship availability &amp; what I offer"],
+        ["date",      "current server time"],
+        ["clear",     "wipe the terminal"]
+      ];
+      rows.forEach(function(r){
+        print('  <span style="color:var(--acc)">'+pad2(r[0],10)+'</span> <span style="color:var(--txt-dim)">'+r[1]+'</span>');
+      });
+      blank();
+      print('<span style="color:var(--txt-mute)">tip: ↑ / ↓ cycles history · tab autocompletes</span>');
+    },
+    whoami: function(){
+      print('<span style="color:var(--acc)">'+DATA.handle+'</span> <span style="color:var(--txt-mute)">— but you asked, so:</span>');
+      print("  "+DATA.name+" · Cybersecurity Undergraduate");
+      print("  Blue Team enthusiast, aspiring Cloud Security Engineer.");
+      print("  "+DATA.degree);
+    },
+    contact: function(){
+      print("direct channels:", "hi");
+      print('  email  ' + link("mailto:"+DATA.email, DATA.email));
+      print('  github ' + link(DATA.github, "github.com/"+DATA.handle));
+      blank();
+      print('<span style="color:var(--txt-mute)">email is fastest — usually answered within a day or two.</span>');
+    },
+    email: function(){ print(DATA.email, "ok"); },
+    labs: function(){
+      print("hands-on labs:", "hi");
+      print('  <span style="color:var(--acc)">▸</span> TryHackMe — defensive &amp; SOC learning paths  <span style="color:var(--acc)">[active]</span>  ' + link(DATA.the, "profile"));
+      print('  <span style="color:var(--acc)">▸</span> HackTheBox — boxes &amp; challenges         <span style="color:var(--acc)">[active]</span>  ' + link(DATA.htbox, "profile"));
+      blank();
+      print("workshops &amp; events:");
+      print('  <span style="color:var(--acc)">▸</span> How To Get Your First Bounty (Bug Bounty) — by BarqSec &amp; ACS');
+    },
+    roadmap: function(){
+      print("certification roadmap — hybrid SOC &amp; cloud security:", "hi");
+      print('  <span style="color:var(--acc)">Y1</span>   SC-200 <span style="color:var(--acc)">(in progress)</span> · CompTIA Security+');
+      print('  <span style="color:var(--acc-2)">Y1→2</span> BTL1 (Blue Team Level 1)');
+      print('  <span style="color:var(--acc-2)">Y2</span>   AZ-900 · ISO 27001 Foundation');
+      print('  <span style="color:var(--acc-2)">Y2→3</span> CDSA (Certified Defensive Security Analyst)');
+      print('  <span style="color:var(--acc-2)">Y3</span>   AZ-104 · SC-500');
+      blank();
+      print('<span style="color:var(--txt-mute)">scroll to section 03 for the full timeline.</span>');
+    },
+    education: function(){
+      print(DATA.degree, "ok");
+      print("mapped 1:1 onto the certification roadmap — coursework and certs reinforce each other.");
+    },
+    projects: function(){
+      print("jumping to #projects …", "info");
+      document.getElementById("projects").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth"});
+    },
+    skills: function(){
+      print("jumping to #skills …", "info");
+      document.getElementById("skills").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth"});
+    },
+    intern: function(){
+      print("● SEEKING INTERNSHIPS — blue team / SOC / cloud security", "ok"); blank();
+      print("what you get:");
+      print("  · defensive mindset — SOC fundamentals &amp; detection thinking");
+      print("  · OSINT &amp; information gathering discipline");
+      print("  · SQL / data modelling + Python automation basics");
+      print("  · operational calm — I ran a retail branch's daily ops first");
+      print("  · a 3-year cert plan already in motion (SC-200 in progress)");
+      blank();
+      print('<span style="color:var(--txt-mute)">send the scope to '+DATA.email+' — I reply fast.</span>');
+    },
+    date: function(){ print(new Date().toString(), "ok"); },
+    clear: function(){ out.innerHTML = ""; },
+    ls: function(){ print("about/  skills/  roadmap/  projects/  education/  contact/", "info"); },
+    pwd: function(){ print("/home/visitor", "info"); },
+    exit: function(){
+      print("closing channel… thanks for stopping by.", "ok");
+      status.textContent = "DISCONNECTED";
+      status.style.color = "var(--danger)";
+    },
+    sudo: function(){
+      print("sudo: visitor is not in the sudoers file. This incident has been reported.", "err");
+      print('<span style="color:var(--txt-mute)">(it hasn\'t. but it could have been.)</span>');
+    }
+  };
+
+  var JOKES = {
+    "rm -rf /": function(){ print("nice try. --no-preserve-root blocked at the sandbox layer.", "err"); },
+    "sudo rm -rf /": function(){ print("denied. also logged. also forwarded to no one, because this is a static page.", "err"); },
+    "hack": function(){ print("I'm literally a portfolio website. Try `intern` — I'm looking for work.", "err"); },
+    "matrix": function(){ print("follow the white rabbit → but first, `roadmap`.", "ok"); }
+  };
+
+  function banner(){
+    print('<span style="color:var(--acc)">╔══════════════════════════════════════════════════╗</span>');
+    print('<span style="color:var(--acc)">║</span>  SECURE CHANNEL ESTABLISHED  ·  0xL0g1c        <span style="color:var(--acc)">║</span>');
+    print('<span style="color:var(--acc)">╚══════════════════════════════════════════════════╝</span>');
+    blank();
+    print("Hi — I'm Rakan (0xL0g1c). This shell is real, if primitive.", "hi");
+    print('Type <span style="color:var(--acc)">help</span> for commands, or <span style="color:var(--acc)">intern</span> if you have an opening.', "info");
+    blank();
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" })[c];
+    });
+  }
+
+  function run(raw){
+    var line = raw.trim();
+    print('<span style="color:var(--acc)">visitor@0xL0g1c</span><span style="color:var(--txt-mute)">:</span><span style="color:var(--acc-2)">~</span><span style="color:var(--txt-mute)">$</span> ' + (line ? escapeHtml(line) : ""));
+    if(!line) return;
+    history.push(line); hIdx = history.length;
+    var low = line.toLowerCase();
+    if(JOKES[low]){ JOKES[low](); return; }
+    var head = low.split(/\s+/)[0];
+    if(CMDS[head]){ CMDS[head](); return; }
+    print("command not found: " + escapeHtml(head) + " — try 'help'", "err");
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    run(input.value);
+    input.value = "";
+  });
+
+  input.addEventListener("keydown", function(e){
+    if(e.key === "ArrowUp"){
+      e.preventDefault();
+      if(hIdx > 0){ hIdx--; input.value = history[hIdx] || ""; }
+    } else if(e.key === "ArrowDown"){
+      e.preventDefault();
+      if(hIdx < history.length-1){ hIdx++; input.value = history[hIdx] || ""; }
+      else { hIdx = history.length; input.value = ""; }
+    } else if(e.key === "Tab"){
+      e.preventDefault();
+      var v = input.value.toLowerCase().trim();
+      if(!v) return;
+      var names = Object.keys(CMDS).concat(Object.keys(JOKES));
+      var m = names.filter(function(n){ return n.indexOf(v) === 0; });
+      if(m.length === 1) input.value = m[0];
+      else if(m.length > 1) print(m.join("   "), "info");
+    }
+  });
+
+  document.querySelectorAll(".qcmd").forEach(function(b){
+    b.addEventListener("click", function(){ run(b.getAttribute("data-c")); input.focus(); });
+  });
+
+  out.addEventListener("click", function(){ input.focus(); });
+  banner();
+})();
+
+(function copy(){
+  var btn = document.getElementById("copyEmail");
+  var val = document.getElementById("emailVal");
+  var toast = document.getElementById("toast");
+  if(!btn || !val) return;
+  var t;
+  function show(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(t);
+    t = setTimeout(function(){ toast.classList.remove("show"); }, 1900);
+  }
+  btn.addEventListener("click", function(){
+    var text = val.textContent.trim();
+    var done = function(){
+      btn.textContent = "copied ✓"; btn.classList.add("done");
+      show("copied → " + text);
+      setTimeout(function(){ btn.textContent = "copy"; btn.classList.remove("done"); }, 2000);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else fallback();
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); done(); }catch(err){ show("copy failed — select manually"); }
+      document.body.removeChild(ta);
+    }
+  });
+})();
+
+var toTop = document.getElementById("toTop");
+if(toTop) toTop.addEventListener("click", function(){
+  window.scrollTo({ top:0, behavior: reduceMotion ? "auto" : "smooth" });
+});
+
+(function bgmedia(){
+  var audio = document.getElementById("bgAudio");
+  var video = document.getElementById("bgVideo");
+  var btn = document.getElementById("audioBtn");
+  var volDown = document.getElementById("volDown");
+  var volUp = document.getElementById("volUp");
+  var volLabel = document.getElementById("volLabel");
+  if(!audio || !btn) return;
+
+  var audioBroken = false;
+  audio.volume = 0.3;
+  function setLabel(){ if(volLabel) volLabel.textContent = Math.round(audio.volume*100) + "%"; }
+  setLabel();
+
+  audio.addEventListener("error", function(){
+    audioBroken = true;
+    btn.disabled = true;
+    btn.textContent = "[ no audio file ]";
+  });
+
+  if(video){
+    video.muted = true;
+    var bs = document.getElementById("bgstatus");
+    var bsTimer = null;
+    function badge(msg, warn){
+      if(!bs) return;
+      bs.textContent = msg;
+      bs.className = warn ? "show warn" : "show";
+      clearTimeout(bsTimer);
+      bsTimer = setTimeout(function(){ bs.className = ""; }, 6000);
+    }
+    video.addEventListener("loadeddata", function(){
+      badge("bg video: loaded " + (video.videoWidth || 0) + "x" + (video.videoHeight || 0));
+    });
+    video.addEventListener("playing", function(){
+      badge("bg video: live " + (video.videoWidth || 0) + "x" + (video.videoHeight || 0));
+    });
+    video.addEventListener("error", function(){
+      badge("bg video: cannot decode/play — check codec", true);
+      // video.style.display = "none";
+    });
+    video.addEventListener("stalled", function(){
+      badge("bg video: stalled (still trying)", true);
+    });
+  }
+
+  var playing = false;
+  btn.addEventListener("click", function(){
+    if(audioBroken) return;
+    if(!playing){
+      var p = audio.play();
+      if(p && p.catch) p.catch(function(){});
+      if(video) video.muted = false;
+      playing = true;
+      btn.innerText = "[ Pause Audio ]";
+      btn.style.borderColor = "var(--acc-2)";
+      btn.style.color = "var(--acc-2)";
+    } else {
+      audio.pause();
+      if(video) video.muted = true;
+      playing = false;
+      btn.innerText = "[ Play Audio ]";
+      btn.style.borderColor = "";
+      btn.style.color = "";
+    }
+  });
+
+  function setVolume(delta){
+    audio.volume = Math.min(1, Math.max(0, audio.volume + delta));
+    setLabel();
+  }
+  if(volDown) volDown.addEventListener("click", function(){ setVolume(-0.1); });
+  if(volUp) volUp.addEventListener("click", function(){ setVolume(0.1); });
+})();
+
+(function egg(){
+  var buf = "";
+  document.addEventListener("keydown", function(e){
+    if(e.target && /input|textarea/i.test(e.target.tagName)) return;
+    buf = (buf + (e.key || "").toLowerCase()).slice(-4);
+    if(buf === "root"){
+      var t = document.getElementById("toast");
+      t.textContent = "uid=0(root) granted — with great power comes great audit logs";
+      t.classList.add("show");
+      setTimeout(function(){ t.classList.remove("show"); }, 2600);
+      document.documentElement.style.setProperty("--acc", "#ff3b5c");
+      setTimeout(function(){ document.documentElement.style.setProperty("--acc", "#00ff9c"); }, 6000);
+    }
+  });
+})();
+
+})();
 </script>
+
+<!-- Debug helper removed: background video will be shown without overlay -->
 
 </body>
 </html>
